@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "B8iHuK5cQ/eMWt8smgy1cLVRdMq2WPkKTzoUQHVCKU+u+xsXMEBl4i37z6sRwiVguTHaX9gBQTcC2G2Ud5G+qQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\conno\\Desktop\\CloudComputingAss2\\SimpleOnlineMusicSubscriptionApp\\SimpleOnlineMusicSubscriptionApp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\conno\\.nuget\\packages\\awssdk.core\\3.7.10.11\\awssdk.core.3.7.10.11.nupkg.sha512",
+    "C:\\Users\\conno\\.nuget\\packages\\awssdk.s3\\3.7.8.23\\awssdk.s3.3.7.8.23.nupkg.sha512"
+  ],
+  "logs": []
+}
