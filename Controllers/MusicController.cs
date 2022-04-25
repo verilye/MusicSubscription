@@ -1,4 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
+using Models;
+using Amazon.DynamoDBv2;
+using Amazon.DynamoDBv2.DataModel;
+using Amazon.DynamoDBv2.DocumentModel;
 
 namespace CloudComputingAss2.Controllers;
 
@@ -6,48 +10,27 @@ namespace CloudComputingAss2.Controllers;
 [Route("[controller]")]
 public class MusicController : ControllerBase
 {
-    private readonly ILogger<MusicController> _logger;
+    private readonly IAmazonDynamoDB _dynamoDb;
+    private readonly IConfiguration _configuration;
 
-    public MusicController(
-        IDynamoDBContext dynamoDbContext,
-        ILogger<MusicController> logger)
+    public MusicController(IAmazonDynamoDB dynamoDB, IConfiguration configuration)
     {
-        _dynamoDbContext = dynamoDbContext;
-        _logger = logger;
+        _dynamoDb = dynamoDB;
+        _configuration = configuration;
+        
     }
 
-    [HttpPost]
-    public async Task<IEnumerable<Music>> CreateMusicTable()
+    [HttpGet]
+    public async Task<string> GetUsers()
     {
-        string tableName = "music";
-
-        var request = new CreateTableRequest
+        var options = _configuration.GetAWSOptions();
+        string status;
+        using (var client = options.CreateServiceClient<IAmazonDynamoDB>())
         {
-            TableName = tableName,
-            AttributeDefinitions = new List<AttributeDefinition>()
-        {
-            new AttributeDefinition
-            {
-                AttributeName = "title",
-                AttributeType = "S"
-            }
-        },
-        KeySchema = new List<KeySchemaElement>()
-        {
-            new KeySchemaElement
-            {
-                AttributeName = "title",
-                KeyType = "HASH"  //Partition key
-            }
-        },
-        ProvisionedThroughput = new ProvisionedThroughput
-        {
-            ReadCapacityUnits = 10,
-            WriteCapacityUnits = 5
+            var tableData = await client.DescribeTableAsync("Adverts");
+            status = tableData.Table.TableStatus;
         }
-        };
 
-        var response = await _dynamoDbContext.CreateTable(request);
-
+        return status;
     }
 }
