@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "dgSpecHash": "q97u6BselVuOvGoHihN517G4hxXfOP+k8zTz3962n+U+6pIELixLD6nVUJrADWvX0Ws/LdD6MB7DhB86UXtb1Q==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\conno\\Desktop\\CloudComputingAss2\\CloudComputingAss2.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\conno\\.nuget\\packages\\awssdk.core\\3.7.10.11\\awssdk.core.3.7.10.11.nupkg.sha512",
+    "C:\\Users\\conno\\.nuget\\packages\\awssdk.dynamodbv2\\3.7.3.26\\awssdk.dynamodbv2.3.7.3.26.nupkg.sha512",
+    "C:\\Users\\conno\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\conno\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\conno\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\conno\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\conno\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\conno\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
