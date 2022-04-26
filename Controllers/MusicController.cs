@@ -27,7 +27,7 @@ public class MusicController : ControllerBase
         string status;
         using (var client = options.CreateServiceClient<IAmazonDynamoDB>())
         {
-            var tableData = await client.DescribeTableAsync("Adverts");
+            var tableData = await client.DescribeTableAsync("login");
             status = tableData.Table.TableStatus;
         }
 
