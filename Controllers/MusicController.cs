@@ -5,7 +5,7 @@ using Amazon.DynamoDBv2.DataModel;
 using Amazon.DynamoDBv2.DocumentModel;
 using Amazon.DynamoDBv2.Model;
 using Amazon.Runtime;
-
+using Newtonsoft.Json;
 
 namespace CloudComputingAss2.Controllers;
 
@@ -23,7 +23,29 @@ public class MusicController : ControllerBase
         
     }
 
-    [HttpPost]
+    [HttpPost("loadA2Data")]
+    public async Task<string> LoadA2Data()
+    {
+
+        DynamoDBContext context = new DynamoDBContext(_dynamoDb);
+        var musicBatch = context.CreateBatchWrite<music>();
+        List<music> items ;
+        string json;
+
+        using (StreamReader r = new StreamReader("a2.json"))
+        {
+            json = r.ReadToEnd();
+            items = JsonConvert.DeserializeObject<List<music>>(json);
+        }
+
+        Console.WriteLine(items);
+        musicBatch.AddPutItems(items);
+        await musicBatch.ExecuteAsync();
+        return ("Done");
+    }
+
+
+    [HttpPost("musicTable")]
     public async Task<string> CreateTable()
     {
         var options = _configuration.GetAWSOptions();

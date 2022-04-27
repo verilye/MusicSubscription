@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class User
+    public class login
     {
         public string? email{get;set;}
 

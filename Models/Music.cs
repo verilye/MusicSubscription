@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class Music
+    public class music
     {
         public string? title{get;set;}
 

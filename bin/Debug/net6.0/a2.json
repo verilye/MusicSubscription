@@ -1,5 +1,4 @@
-{
-  "songs": [
+[
     {
       "title": "1904",
       "artist": "The Tallest Man on Earth",
@@ -896,5 +895,4 @@
       "web_url": "https://raw.githubusercontent.com/davidpots/songnotes_cms/master/public/songs/134-devotchka-you-love-me",
       "img_url": "https://raw.githubusercontent.com/davidpots/songnotes_cms/master/public/images/artists/DeVotchKa.jpg"
     }
-  ]
-}
+]
