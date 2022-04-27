@@ -16,17 +16,6 @@ builder.Services.AddAWSService<IAmazonDynamoDB>();
 builder.Services.AddScoped<IDynamoDBContext, DynamoDBContext>();
 
 
-// var credentials = new BasicAWSCredentials(Configuration["ACCESS_KEY"], Configuration["SECRET_KEY"]);
-// var config = new AmazonDynamoDBConfig()
-// {
-//     RegionEndpoint = RegionEndpoint.USEast1  
-// };
-
-// var client = new AmazonDynamoDBClient(credentials,config);
-
-// builder.Services.AddSingleton<IAmazonDynamoDB>(client);
-// builder.Services.AddSingleton<IDynamoDBContext, DynamoDBContext>();
-
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
