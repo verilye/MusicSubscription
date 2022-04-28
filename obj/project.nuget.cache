@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "L/mCNA2yxtgE56VQeCPru9AluvhnP4VD0RVS7XXlxXyVTS3FLBCL9zzrTsaFBQD7hUiwL26W6AYZIK9l/oIjOA==",
+  "dgSpecHash": "q03S+DOoZ/FZKaLQVErPFMZyOtWemDpRf07Fb5xKFynHaA8oov2DOVbYZUh0C4WcHVszEtgKZBnCUW998nb+cw==",
   "success": true,
   "projectFilePath": "C:\\Users\\conno\\Desktop\\CloudComputingAss2\\CloudComputingAss2.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\conno\\.nuget\\packages\\awssdk.core\\3.7.10.11\\awssdk.core.3.7.10.11.nupkg.sha512",
     "C:\\Users\\conno\\.nuget\\packages\\awssdk.dynamodbv2\\3.7.3.26\\awssdk.dynamodbv2.3.7.3.26.nupkg.sha512",
     "C:\\Users\\conno\\.nuget\\packages\\awssdk.extensions.netcore.setup\\3.7.2\\awssdk.extensions.netcore.setup.3.7.2.nupkg.sha512",
+    "C:\\Users\\conno\\.nuget\\packages\\awssdk.s3\\3.7.8.23\\awssdk.s3.3.7.8.23.nupkg.sha512",
     "C:\\Users\\conno\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\conno\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\2.0.0\\microsoft.extensions.configuration.abstractions.2.0.0.nupkg.sha512",
     "C:\\Users\\conno\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\2.0.0\\microsoft.extensions.dependencyinjection.abstractions.2.0.0.nupkg.sha512",

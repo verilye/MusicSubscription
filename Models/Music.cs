@@ -15,7 +15,7 @@ namespace Models
     
         public string? web_url{get;set;}
 
-        public string? image_url{get;set;}
+        public string? img_url{get;set;}
 
     }
 

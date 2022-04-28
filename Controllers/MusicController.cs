@@ -6,6 +6,8 @@ using Amazon.DynamoDBv2.DocumentModel;
 using Amazon.DynamoDBv2.Model;
 using Amazon.Runtime;
 using Newtonsoft.Json;
+using System.Net;
+using Newtonsoft.Json.Linq;
 
 namespace CloudComputingAss2.Controllers;
 
@@ -23,22 +25,54 @@ public class MusicController : ControllerBase
         
     }
 
+
+    [HttpPost("loadImages")]
+    public async Task<string> LoadImages(){
+
+        string json;
+        dynamic items;
+        
+        using (StreamReader r = new StreamReader("a2.json"))
+        {
+            json = r.ReadToEnd();
+            
+            items = JArray.Parse(json);
+            
+        }
+
+        for(int i = 0;i<items.Count;i++){
+            
+            using (WebClient client = new WebClient())
+            {
+            
+                string title =Convert.ToString(items[i].title);
+                string img = Convert.ToString(items[i].img_url);
+
+                client.DownloadFileAsync(new Uri(img), title +".jpg");
+            }
+            
+         }
+
+        return ("Done");
+    }
+
+
+
     [HttpPost("loadA2Data")]
     public async Task<string> LoadA2Data()
     {
 
         DynamoDBContext context = new DynamoDBContext(_dynamoDb);
         var musicBatch = context.CreateBatchWrite<music>();
-        List<music> items ;
+        List<music> items;
         string json;
-
+        
         using (StreamReader r = new StreamReader("a2.json"))
         {
             json = r.ReadToEnd();
+            
             items = JsonConvert.DeserializeObject<List<music>>(json);
         }
-
-        Console.WriteLine(items);
         musicBatch.AddPutItems(items);
         await musicBatch.ExecuteAsync();
         return ("Done");
@@ -115,11 +149,11 @@ public class MusicController : ControllerBase
 
                 var createImageUrlIndex = new GlobalSecondaryIndex()
                 {
-                    IndexName = "image_url",
+                    IndexName = "img_url",
                     ProvisionedThroughput = ptIndex,
                     KeySchema = {
                         new KeySchemaElement {
-                            AttributeName = "image_url", 
+                            AttributeName = "img_url", 
                             KeyType = "HASH" //Partition key
                         }
                     },
@@ -163,7 +197,7 @@ public class MusicController : ControllerBase
                         },
                         new AttributeDefinition
                         {
-                        AttributeName = "image_url",
+                        AttributeName = "img_url",
                         AttributeType = "S"
                         },
 
