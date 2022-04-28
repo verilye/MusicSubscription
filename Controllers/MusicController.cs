@@ -48,7 +48,7 @@ public class MusicController : ControllerBase
                 string title =Convert.ToString(items[i].title);
                 string img = Convert.ToString(items[i].img_url);
 
-                client.DownloadFileAsync(new Uri(img), title +".jpg");
+                client.DownloadFileAsync(new Uri(img), @"Images\"+ title + ".jpg");
             }
             
          }
