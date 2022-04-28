@@ -30,7 +30,7 @@ public class MusicController : ControllerBase
 
 
     [HttpPost("loadImages")]
-    public async Task<string> LoadImages(){
+    public async Task<string> downloadImages(){
 
         string json;
         dynamic items;
@@ -42,10 +42,8 @@ public class MusicController : ControllerBase
             items = JArray.Parse(json);
             
         }
-
-        Thread.Sleep(100);
         
-
+        
         for(int i = 0;i<items.Count;i++)
         {
             
@@ -60,33 +58,22 @@ public class MusicController : ControllerBase
             }
             
         }
-        
-        
-        Thread.Sleep(1000);
 
-        try
-        {   
-            
-            var awsCredentials = new Amazon.Runtime.BasicAWSCredentials("myaccesskey", "mysecretkey");
-            var s3Client = new AmazonS3Client(awsCredentials, Amazon.RegionEndpoint.USEast1);
-            using (var directoryTransferUtility = new TransferUtility(s3Client)){
-                
-                await directoryTransferUtility.UploadDirectoryAsync("Images",
-                    "connorlogancloudcomputingass2");
+        return ("Downloaded");
+    }
 
-            }
-           
-            
-            
-
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e.Message);
-        }
     
+    [HttpPost("uploadImages")]
+    public async Task<string> uploadImages(){
+        
+        var awsCredentials = new Amazon.Runtime.BasicAWSCredentials("AKIASHVIFIH4F7XVSYUK", "K04APBUS/9nki0wwNPzWrlH90E+IKidmIWIY2Kia");
+        var s3Client = new AmazonS3Client(awsCredentials, Amazon.RegionEndpoint.USEast1);
+            
+        var directoryTransferUtility =  new TransferUtility(s3Client);
+        
+        await directoryTransferUtility.UploadDirectoryAsync("Images","connorlogancloudcomputingass2");
 
-        return ("Done");
+        return ("Uploaded");
     }
 
 
