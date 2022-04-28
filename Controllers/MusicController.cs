@@ -8,6 +8,9 @@ using Amazon.Runtime;
 using Newtonsoft.Json;
 using System.Net;
 using Newtonsoft.Json.Linq;
+using Amazon.S3;
+using Amazon.S3.Model;
+using Amazon.S3.Transfer;
 
 namespace CloudComputingAss2.Controllers;
 
@@ -40,7 +43,11 @@ public class MusicController : ControllerBase
             
         }
 
-        for(int i = 0;i<items.Count;i++){
+        Thread.Sleep(100);
+        
+
+        for(int i = 0;i<items.Count;i++)
+        {
             
             using (WebClient client = new WebClient())
             {
@@ -49,9 +56,35 @@ public class MusicController : ControllerBase
                 string img = Convert.ToString(items[i].img_url);
 
                 client.DownloadFileAsync(new Uri(img), @"Images\"+ title + ".jpg");
+                
             }
             
-         }
+        }
+        
+        
+        Thread.Sleep(1000);
+
+        try
+        {   
+            
+            var awsCredentials = new Amazon.Runtime.BasicAWSCredentials("myaccesskey", "mysecretkey");
+            var s3Client = new AmazonS3Client(awsCredentials, Amazon.RegionEndpoint.USEast1);
+            using (var directoryTransferUtility = new TransferUtility(s3Client)){
+                
+                await directoryTransferUtility.UploadDirectoryAsync("Images",
+                    "connorlogancloudcomputingass2");
+
+            }
+           
+            
+            
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+    
 
         return ("Done");
     }
