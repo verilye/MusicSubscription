@@ -19,12 +19,12 @@ namespace CloudComputingAss2.Controllers;
 public class MusicController : ControllerBase
 {
     private readonly IAmazonDynamoDB _dynamoDb;
-    private readonly IConfiguration _configuration;
+    private readonly IConfiguration _config;
 
     public MusicController(IAmazonDynamoDB dynamoDB, IConfiguration configuration)
     {
         _dynamoDb = dynamoDB;
-        _configuration = configuration;
+        _config = configuration;
         
     }
 
@@ -66,7 +66,7 @@ public class MusicController : ControllerBase
     [HttpPost("uploadImages")]
     public async Task<string> uploadImages(){
         
-        var awsCredentials = new Amazon.Runtime.BasicAWSCredentials("AKIASHVIFIH4F7XVSYUK", "K04APBUS/9nki0wwNPzWrlH90E+IKidmIWIY2Kia");
+        var awsCredentials = new Amazon.Runtime.BasicAWSCredentials("ACCESS_KEY", "SECRET_KEY");
         var s3Client = new AmazonS3Client(awsCredentials, Amazon.RegionEndpoint.USEast1);
             
         var directoryTransferUtility =  new TransferUtility(s3Client);
@@ -102,7 +102,7 @@ public class MusicController : ControllerBase
     [HttpPost("musicTable")]
     public async Task<string> CreateTable()
     {
-        var options = _configuration.GetAWSOptions();
+        var options = _config.GetAWSOptions();
         string status;
         using (var client = options.CreateServiceClient<IAmazonDynamoDB>())
         {
