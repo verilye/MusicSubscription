@@ -21,18 +21,11 @@ public class MusicController : ControllerBase
 {
     private readonly IAmazonDynamoDB _dynamoDb;
     private readonly IConfiguration _config;
-    private readonly IOptions<MyConfig> _keys;
 
-
-    public MusicController(IAmazonDynamoDB dynamoDB, IConfiguration configuration, IOptions<MyConfig> keys)
+    public MusicController(IAmazonDynamoDB dynamoDB, IConfiguration configuration)
     {
         _dynamoDb = dynamoDB;
-        _config = configuration;
-        _keys = keys;
-
-        Console.WriteLine(_config.GetRequiredSection("MyConfig").GetChildren());
-
-        
+        _config = configuration;        
         
     }
 
@@ -73,12 +66,15 @@ public class MusicController : ControllerBase
     
     [HttpPost("uploadImages")]
     public async Task<string> uploadImages(){
-        
-        var access_key = _config["MyConfig:aws_access_key"];
-        var secret_key = _config["MyConfig:aws_secret_key"];
 
-        var awsCredentials = new Amazon.Runtime.BasicAWSCredentials(access_key, secret_key);
-        var s3Client = new AmazonS3Client(awsCredentials, Amazon.RegionEndpoint.USEast1);
+        string access_key = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID");
+        string secret_key = Environment.GetEnvironmentVariable("AWS_SECRET_ACCESS_KEY");
+
+        Console.WriteLine(access_key);
+        Console.WriteLine(secret_key);
+
+
+        var s3Client = new AmazonS3Client(access_key, secret_key, Amazon.RegionEndpoint.USEast1);
             
         var directoryTransferUtility =  new TransferUtility(s3Client);
         
