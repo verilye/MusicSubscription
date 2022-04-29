@@ -10,6 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+builder.Services.AddControllersWithViews();
+
 builder.Configuration.AddJsonFile("appsettings.json", optional:true, reloadOnChange:true);
 
 ConfigurationManager Configuration = builder.Configuration;
@@ -32,7 +34,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI();    
 }
 
 app.UseHttpsRedirection();
@@ -40,5 +42,9 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

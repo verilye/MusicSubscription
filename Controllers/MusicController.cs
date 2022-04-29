@@ -30,7 +30,7 @@ public class MusicController : ControllerBase
     }
 
 
-    [HttpPost("loadImages")]
+    [HttpPost("downloadImages")]
     public async Task<string> downloadImages(){
 
         string json;
@@ -69,9 +69,6 @@ public class MusicController : ControllerBase
 
         string access_key = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID");
         string secret_key = Environment.GetEnvironmentVariable("AWS_SECRET_ACCESS_KEY");
-
-        Console.WriteLine(access_key);
-        Console.WriteLine(secret_key);
 
 
         var s3Client = new AmazonS3Client(access_key, secret_key, Amazon.RegionEndpoint.USEast1);
