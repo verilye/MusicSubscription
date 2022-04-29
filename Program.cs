@@ -2,16 +2,21 @@ using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DataModel;
 using Amazon.DynamoDBv2.DocumentModel;
 using Amazon.Extensions.NETCore.Setup;
+using Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Configuration.AddJsonFile("appsettings.json", optional:true, reloadOnChange:true);
+
 ConfigurationManager Configuration = builder.Configuration;
 
+builder.Services.AddOptions();
+builder.Services.Configure<MyConfig>(Configuration.GetSection("MyConfig"));
 builder.Services.AddDefaultAWSOptions(Configuration.GetAWSOptions());
-
 builder.Services.AddAWSService<IAmazonDynamoDB>();
 builder.Services.AddScoped<IDynamoDBContext, DynamoDBContext>();
 

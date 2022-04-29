@@ -11,6 +11,7 @@ using Newtonsoft.Json.Linq;
 using Amazon.S3;
 using Amazon.S3.Model;
 using Amazon.S3.Transfer;
+using Microsoft.Extensions.Options;
 
 namespace CloudComputingAss2.Controllers;
 
@@ -20,11 +21,18 @@ public class MusicController : ControllerBase
 {
     private readonly IAmazonDynamoDB _dynamoDb;
     private readonly IConfiguration _config;
+    private readonly IOptions<MyConfig> _keys;
 
-    public MusicController(IAmazonDynamoDB dynamoDB, IConfiguration configuration)
+
+    public MusicController(IAmazonDynamoDB dynamoDB, IConfiguration configuration, IOptions<MyConfig> keys)
     {
         _dynamoDb = dynamoDB;
         _config = configuration;
+        _keys = keys;
+
+        Console.WriteLine(_config.GetRequiredSection("MyConfig").GetChildren());
+
+        
         
     }
 
@@ -66,7 +74,10 @@ public class MusicController : ControllerBase
     [HttpPost("uploadImages")]
     public async Task<string> uploadImages(){
         
-        var awsCredentials = new Amazon.Runtime.BasicAWSCredentials("ACCESS_KEY", "SECRET_KEY");
+        var access_key = _config["MyConfig:aws_access_key"];
+        var secret_key = _config["MyConfig:aws_secret_key"];
+
+        var awsCredentials = new Amazon.Runtime.BasicAWSCredentials(access_key, secret_key);
         var s3Client = new AmazonS3Client(awsCredentials, Amazon.RegionEndpoint.USEast1);
             
         var directoryTransferUtility =  new TransferUtility(s3Client);
