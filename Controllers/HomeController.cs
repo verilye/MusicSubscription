@@ -18,9 +18,10 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Privacy()
+    [HttpPost]
+    public IActionResult Index(string email)
     {
-        return View();
+        return Content($"Hello {email}");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
