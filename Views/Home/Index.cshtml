@@ -1,10 +1,12 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@ViewData["error"]
 
 <div class="text-center">
     <h1 class="display-4">Login</h1>
 </div>
+<h2 id="error" runat="server">
 <div class ="login-form">
     <form method="POST">
         <label for="email">Email</label><br>
