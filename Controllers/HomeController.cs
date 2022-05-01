@@ -45,7 +45,7 @@ namespace CloudComputingAss2.Controllers
 
             if(result == 1){
 
-                return RedirectToAction("Index", "Register", new {area=""});
+                return RedirectToAction("Index", "Main");
 
             }else{
 

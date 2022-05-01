@@ -16323,6 +16323,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\conno\\Desktop\\CloudComputingAss2\\Views\\Main\\Index.cshtml",
+      "TargetPath": "Views\\Main\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\conno\\Desktop\\CloudComputingAss2\\Views\\_ViewStart.cshtml",
       "TargetPath": "Views\\_ViewStart.cshtml",
       "FileKind": "mvc"
