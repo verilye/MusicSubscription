@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace CloudComputingAss2.Controllers
-{
+{   
+    
     [Route("[controller]")]
     public class MainController : Controller
     {
@@ -15,7 +17,7 @@ namespace CloudComputingAss2.Controllers
 
         public MainController(ILogger<MainController> logger)
         {
-            _logger = logger;
+            _logger = logger; 
         }
 
         public IActionResult Index()

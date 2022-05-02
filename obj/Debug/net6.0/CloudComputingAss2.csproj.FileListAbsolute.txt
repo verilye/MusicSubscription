@@ -49,3 +49,10 @@ C:\Users\conno\Desktop\CloudComputingAss2\obj\Debug\net6.0\refint\CloudComputing
 C:\Users\conno\Desktop\CloudComputingAss2\obj\Debug\net6.0\CloudComputingAss2.pdb
 C:\Users\conno\Desktop\CloudComputingAss2\obj\Debug\net6.0\CloudComputingAss2.genruntimeconfig.cache
 C:\Users\conno\Desktop\CloudComputingAss2\obj\Debug\net6.0\ref\CloudComputingAss2.dll
+C:\Users\conno\Desktop\CloudComputingAss2\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\conno\Desktop\CloudComputingAss2\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\conno\Desktop\CloudComputingAss2\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\conno\Desktop\CloudComputingAss2\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\conno\Desktop\CloudComputingAss2\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\conno\Desktop\CloudComputingAss2\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\conno\Desktop\CloudComputingAss2\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
