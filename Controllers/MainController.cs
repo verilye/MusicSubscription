@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Net;
+using Microsoft.AspNetCore.Http;
+
 
 namespace CloudComputingAss2.Controllers
 {   
@@ -20,8 +23,13 @@ namespace CloudComputingAss2.Controllers
             _logger = logger; 
         }
 
-        public IActionResult Index()
-        {
+        public IActionResult Index(IFormCollection fc)
+        {   
+
+
+            var username = Request.Cookies["UserName"];
+            
+            ViewData["username"] =username;
             return View();
         }
     }
