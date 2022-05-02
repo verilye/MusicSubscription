@@ -3,6 +3,16 @@
 @ViewData["error"]
 
 <style>
+
+td { 
+    background-color: black;
+    color:white;
+    text-align: center; }
+
+table{
+    margin-bottom:30px;
+}
+
 .user-area{
     position: absolute;
     height:10%;
@@ -21,26 +31,36 @@
     position: absolute;
     top:50%;
     background-color:green;
+    margin-bottom:30px;
 
+}
+
+.logout-link{
+    font-size: 30px;
+    float:right;
 }
 </style>
 
 <div class="user-area">
     <h1 class="display-4"> Welcome @ViewData["username"]</h1>
 </div>
+<div class="logout-link">
+    <a asp-area="" asp-controller="Home" asp-action="Index" class="Button">Logout</a>
+</div>
 <div class="subscription-area">
     <h1 class="display-4">Subscription Area</h1>
 </div>
+
 <div class="query-area">
     <h1 class="display-4">Query Area</h1>
     <div class ="query-form">
         <form method="POST">
             <label for="title">Title</label><br>
-            <input type="text" id="title" name="title" required>
+            <input type="text" id="title" name="title"><br>
             <label for="year">Year</label><br>
-            <input type="text" id="year" name="year" required>
+            <input type="text" id="year" name="year"><br>
             <label for="artist">Artist</label><br>
-            <input type="text" id="artist" name="artist" required>
+            <input type="text" id="artist" name="artist"><br>
             <input type="submit" value="Query">
         </form> 
     </div>
@@ -49,14 +69,13 @@
     <thead>
         <tr>
                 <th>
-                    <a asp-action="Index">@Html.DisplayNameFor(model => model.title)</a>
+                    <a>Title</a>
                 </th>
                 <th>
-                    <a asp-action="Index">@Html.DisplayNameFor(model => model.year)</a>
+                    <a> Year</a>
                 </th>
-               
                 <th>
-                    <a asp-action="Index">@Html.DisplayNameFor(model => model.artist)</a>
+                    <a>Artist</a>
                 </th>
             <th></th>
         </tr>
@@ -74,7 +93,7 @@
                 @Html.DisplayFor(modelItem => item.artist)
             </td>
             <td>
-                <img src="@Html.DisplayFor(modelItem => item.img_url)" alt="Italian Trulli">
+                <img src="@Html.DisplayFor(modelItem => item.img_url)">
                 
             </td>
             <td>
@@ -84,9 +103,7 @@
 }
 
 </div>
-<div class="logout-link">
-    <a asp-area="" asp-controller="Home" asp-action="Index" class="Button">Logout</a>
-</div>
+
 
 
 

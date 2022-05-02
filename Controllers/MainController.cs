@@ -61,39 +61,71 @@ namespace CloudComputingAss2.Controllers
                 
             } while (!search.IsDone);
 
-
-            string token = search.PaginationToken;
-            var cookieOptions = new CookieOptions{Secure = true,HttpOnly = true,SameSite = SameSiteMode.None};
-            Response.Cookies.Append("pagination", token, cookieOptions);
-            
-            //Display and paginate subscribed data 
             //turn search results into a list that the view can read
 
             return View(musicList);
         }        
 
         [HttpPost]
-        public IActionResult queryMusic(string title, string year, string artist)
+        public async Task<IActionResult> Index(string title, string year, string artist)
         {
-
-            //Query based on input
-            //Return all relevant music in the view
-
+            
+           //Display username at top
             var username = Request.Cookies["UserName"];
-            ViewData["username"] = username;
+            ViewData["username"] =username;
 
             string tableName = "music";
-            Table ThreadTable = Table.LoadTable(_dynamoDb, tableName);
-
+            Table musicTable = Table.LoadTable(_dynamoDb, tableName);
             ScanFilter scanFilter = new ScanFilter();
-            scanFilter.AddCondition("title", ScanOperator.Equal, title);
-            scanFilter.AddCondition("year", ScanOperator.Equal, year);
-            scanFilter.AddCondition("artist", ScanOperator.Equal, artist);
-            Search search = ThreadTable.Scan(scanFilter);
+
+            if(title!=null)scanFilter.AddCondition("title", ScanOperator.Equal, title);
+
+            if(year!=null)scanFilter.AddCondition("year", ScanOperator.Equal, year);
+
+            if(artist!=null)scanFilter.AddCondition("artist", ScanOperator.Equal, artist);
+
+            Search search = musicTable.Scan(scanFilter);
+
+            var result = search.Count;
+
+            if(result == 0)
+            {
+                List<music> m = new List<music>();
+                music song = new music();
+                song.title = "No result is retrieved. Please query again";
+                song.web_url ="";
+                song.img_url ="";
+                m.Add(song);
+
+                ViewData["error"] = "No result is retrieved. Please query again";
+                return View(m);
+            }
+
+            List<Document> documentList = new List<Document>();
+            List<music> musicList = new List<music>();
+            do
+            {
+                documentList = await search.GetNextSetAsync();
+                foreach (var document in documentList)
+                {
+                    music song = new music();
+
+                    song.title = document["title"];
+                    song.artist =document["artist"];
+                    song.year =document["year"];
+                    song.web_url =document["web_url"];
+                    song.img_url =document["img_url"];
+
+                    musicList.Add(song);
+                }
+
+                
+            } while (!search.IsDone);
 
 
+            //turn search results into a list that the view can read
 
-            return View();
+            return View(musicList);
         }
 
 
