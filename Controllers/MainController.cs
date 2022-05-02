@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Http;
 using Amazon.DynamoDBv2.DocumentModel;
 using Amazon.DynamoDBv2;
 using Models;
-
+using Amazon.DynamoDBv2.Model;
 
 namespace CloudComputingAss2.Controllers
 {   
@@ -64,7 +64,41 @@ namespace CloudComputingAss2.Controllers
             //turn search results into a list that the view can read
 
             return View(musicList);
-        }        
+        } 
+
+    
+        [Route ("subscribe/{id}")]
+        public async Task<IActionResult> subscribe(string id)
+        {
+
+            var email = Request.Cookies["Email"];
+
+            string tableName = "login";
+
+            var request = new UpdateItemRequest
+            {
+                TableName = tableName,
+                Key = new Dictionary<string,AttributeValue>() { { "email", new AttributeValue { S = email } } },
+                ExpressionAttributeNames = new Dictionary<string,string>()
+                {
+                    {"#s", "subscriptions"},
+                },
+                ExpressionAttributeValues = new Dictionary<string, AttributeValue>()
+                {
+                    {":subscriptions", new AttributeValue { SS = {id}}},
+                    
+                },
+
+                // This expression does the following:
+                // 1) Adds two new authors to the list
+                
+                UpdateExpression = "ADD #s :subscriptions"
+            };
+            
+            await _dynamoDb.UpdateItemAsync(request);
+
+            return RedirectToAction("Index", "Main");
+        }
 
         [HttpPost]
         public async Task<IActionResult> Index(string title, string year, string artist)
