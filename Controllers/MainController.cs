@@ -44,7 +44,7 @@ namespace CloudComputingAss2.Controllers
             List<music> musicList = new List<music>();
             do
             {
-                documentList = await search.GetNextSetAsync();
+                documentList = await search.GetNextSetAsync(); 
                 foreach (var document in documentList)
                 {
                     music song = new music();

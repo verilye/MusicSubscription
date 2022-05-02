@@ -54,6 +54,7 @@ namespace CloudComputingAss2.Controllers
                 
                 var cookieOptions = new CookieOptions{Secure = true,HttpOnly = true,SameSite = SameSiteMode.None};
                 Response.Cookies.Append("UserName", username, cookieOptions);
+                Response.Cookies.Append("Email", email, cookieOptions);
                 return RedirectToAction("Index", "Main");
 
             }else{

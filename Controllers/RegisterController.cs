@@ -58,11 +58,14 @@ namespace CloudComputingAss2.Controllers
                     {
                         { "email", new AttributeValue { S = email }},
                         { "user_name", new AttributeValue { S = username }},
-                        { "password", new AttributeValue { S = password }}
+                        { "password", new AttributeValue { S = password }},
+                        { "subscriptions", new AttributeValue { SS = new List<string>{}}}
+
                     }
                 };
 
                 _dynamoDb.PutItemAsync(request);
+                
             }catch(Exception e){
 
                 Console.Write(e);
