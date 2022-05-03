@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Models.music>
+﻿@model dynamic
 @{ViewData["Title"] = "Main";}
 @ViewData["error"]
 
@@ -49,6 +49,43 @@ table{
 </div>
 <div class="subscription-area">
     <h1 class="display-4">Subscription Area</h1>
+
+    <thead>
+        <tr>
+                <th>
+                    <a>Title</a>
+                </th>
+                <th>
+                    <a> Year</a>
+                </th>
+                <th>
+                    <a>Artist</a>
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.subs) {
+        <tr>
+            <td>
+                @item.title
+            </td>
+            <td>
+                @item.year
+            </td>
+            <td>
+                @item.artist
+            </td>
+            <td>
+                <img src="@item.img_url">
+                
+            </td>
+            <td>
+                <a asp-area="" asp-controller="Main" asp-action="subscribe" asp-route-id="@item.title" class="Button">Subscribe</a>
+            </td>
+        </tr>
+        }
+    </tbody>
 </div>
 
 <div class="query-area">
@@ -65,7 +102,7 @@ table{
         </form> 
     </div>
     
-    <table class="table">
+    <table class="query-table">
     <thead>
         <tr>
                 <th>
@@ -81,26 +118,27 @@ table{
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model) {
+        @foreach (var item in Model.music) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.title)
+                @item.title
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.year)
+                @item.year
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.artist)
+                @item.artist
             </td>
             <td>
-                <img src="@Html.DisplayFor(modelItem => item.img_url)">
+                <img src="@item.img_url">
                 
             </td>
             <td>
                 <a asp-area="" asp-controller="Main" asp-action="subscribe" asp-route-id="@item.title" class="Button">Subscribe</a>
             </td>
         </tr>
-}
+        }
+    </tbody>
 
 </div>
 

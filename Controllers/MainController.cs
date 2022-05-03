@@ -12,6 +12,7 @@ using Amazon.DynamoDBv2.DocumentModel;
 using Amazon.DynamoDBv2;
 using Models;
 using Amazon.DynamoDBv2.Model;
+using System.Dynamic;
 
 namespace CloudComputingAss2.Controllers
 {   
@@ -31,12 +32,44 @@ namespace CloudComputingAss2.Controllers
         public async Task<IActionResult> Index()
         {   
 
+    
             //Display username at top
             var username = Request.Cookies["UserName"];
             ViewData["username"] =username;
 
-            string tableName = "music";
-            Table musicTable = Table.LoadTable(_dynamoDb, tableName);
+
+            //Get subscriptions from user's subscriptions array
+
+            var email = Request.Cookies["Email"];
+
+            Table users = Table.LoadTable(_dynamoDb, "login");
+            Table musicTable = Table.LoadTable(_dynamoDb, "music");
+
+            Document user = await users.GetItemAsync(email);
+
+            List<string> userSubscriptions = (List<string>)user["subscriptions"];
+
+            List<Document> docs = new List<Document>();
+            foreach (var item in userSubscriptions)
+            {
+                
+                Console.Write("--"+item+"--");
+
+                // Document sub = await musicTable.GetItemAsync(item);
+
+
+                // docs.Add(sub);
+                
+            }
+
+
+            List<music> subs = new List<music>();
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+            //Get Music in query area
             ScanFilter scanFilter = new ScanFilter();
             Search search = musicTable.Scan(scanFilter);
 
@@ -61,9 +94,13 @@ namespace CloudComputingAss2.Controllers
                 
             } while (!search.IsDone);
 
-            //turn search results into a list that the view can read
+            
+            
+            dynamic Model = new ExpandoObject();
+            Model.music = musicList;
+            Model.subs = subs;
 
-            return View(musicList);
+            return View(Model);
         } 
 
     
