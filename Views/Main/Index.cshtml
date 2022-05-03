@@ -50,43 +50,44 @@ table{
 
 <div class="subscription-area">
     <h1 class="display-4">Subscription Area</h1>
-
-    <thead>
-        <tr>
-                <th>
-                    <a>Title</a>
-                </th>
-                <th>
-                    <a> Year</a>
-                </th>
-                <th>
-                    <a>Artist</a>
-                </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.subs) {
-        <tr>
-            <td>
-                @item.title
-            </td>
-            <td>
-                @item.year
-            </td>
-            <td>
-                @item.artist
-            </td>
-            <td>
-                <img src="@item.img_url">
-                
-            </td>
-            <td>
-                <a asp-area="" asp-controller="Main" asp-action="subscribe" asp-route-id="@item.title" class="Button">Subscribe</a>
-            </td>
-        </tr>
-        }
-    </tbody>
+    <table class="query-table">
+        <thead>
+            <tr>
+                    <th>
+                        <a>Title</a>
+                    </th>
+                    <th>
+                        <a> Year</a>
+                    </th>
+                    <th>
+                        <a>Artist</a>
+                    </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.subs) {
+            <tr>
+                <td>
+                    @item.title
+                </td>
+                <td>
+                    @item.year
+                </td>
+                <td>
+                    @item.artist
+                </td>
+                <td>
+                    <img src="@item.img_url">
+                    
+                </td>
+                <td>
+                    <a asp-area="" asp-controller="Main" asp-action="remove" asp-route-id="@item.title" class="Button">Remove</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
 </div>
 
 <div class="query-area">

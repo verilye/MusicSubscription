@@ -152,6 +152,51 @@ namespace CloudComputingAss2.Controllers
             return RedirectToAction("Index", "Main");
         }
 
+        [Route ("remove/{id}")]
+        public async Task<IActionResult> remove(string id)
+        {
+
+            var email = Request.Cookies["Email"];
+
+            Table users = Table.LoadTable(_dynamoDb, "login");
+
+            Document user = await users.GetItemAsync(email);
+
+            List<string> userSubscriptions = (List<string>)user["subscriptions"];
+            
+            // int counter = 0;
+
+            // for (int i = 0; i<userSubscriptions.Count;i++)
+            // {
+            //     if(id == userSubscriptions[i]) break;
+
+            //     counter++;
+            // }
+
+            userSubscriptions.Remove(id);
+
+
+            var request = new PutItemRequest
+            {
+                TableName = "login",
+                Item = new Dictionary<string,AttributeValue>() 
+                { 
+                    { "email", new AttributeValue { S = user["email"] } },
+                    { "user_name", new AttributeValue { S = user["user_name"] } },
+                    { "password", new AttributeValue { S = user["password"] } },
+                    { "subscriptions", new AttributeValue {SS = userSubscriptions}}
+                        
+                }
+            };
+            
+                        
+            await _dynamoDb.PutItemAsync(request);
+    
+            return RedirectToAction("Index", "Main");
+        }
+
+
+
         [HttpPost]
         public async Task<IActionResult> Index(string title, string year, string artist)
         {
