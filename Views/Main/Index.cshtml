@@ -14,39 +14,40 @@ table{
 }
 
 .user-area{
-    position: absolute;
+    position: relative;
     height:10%;
     background-color: red;
 
 }
 
 .subscription-area{
-    position: absolute;
+    position: relative;
     top:15%;
     background-color: blue;
 
 }
 
 .query-area{
-    position: absolute;
-    top:50%;
+    position:relative;
     background-color:green;
     margin-bottom:30px;
 
 }
 
 .logout-link{
+    position: relative;
     font-size: 30px;
-    float:right;
 }
 </style>
 
 <div class="user-area">
     <h1 class="display-4"> Welcome @ViewData["username"]</h1>
 </div>
+
 <div class="logout-link">
     <a asp-area="" asp-controller="Home" asp-action="Index" class="Button">Logout</a>
 </div>
+
 <div class="subscription-area">
     <h1 class="display-4">Subscription Area</h1>
 

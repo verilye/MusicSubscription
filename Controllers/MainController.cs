@@ -52,18 +52,33 @@ namespace CloudComputingAss2.Controllers
             List<Document> docs = new List<Document>();
             foreach (var item in userSubscriptions)
             {
-                
-                Console.Write("--"+item+"--");
 
-                // Document sub = await musicTable.GetItemAsync(item);
+                if(item==""){
+
+                    continue;
+                }
+
+                Document sub = await musicTable.GetItemAsync(item);
 
 
-                // docs.Add(sub);
+                docs.Add(sub);
                 
             }
 
-
             List<music> subs = new List<music>();
+
+            foreach (var document in docs)
+                {
+                    music song = new music();
+
+                    song.title = document["title"];
+                    song.artist =document["artist"];
+                    song.year =document["year"];
+                    song.web_url =document["web_url"];
+                    song.img_url =document["img_url"];
+
+                    subs.Add(song);
+                }
 
 
 
