@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "0bUxbftoMgsDhmjNRInNtyqoe64MJaospuhlTZtBmvlSEtyXQS9cw12reywkNxiMwOMTReDs0iwKY67IJmcNGQ==",
+  "dgSpecHash": "E+90wPQTAGV9j3MEW49IJS8h0U9TX85k+OX9ELGaXRGLi/v4ei5vH2ILOcZvbduBGNW5wIKts7s8DP5yELlmYQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\conno\\Desktop\\CloudComputingAss2\\CloudComputingAss2.csproj",
   "expectedPackageFiles": [
@@ -19,6 +19,7 @@
     "C:\\Users\\conno\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\conno\\.nuget\\packages\\microsoft.aspnetcore.http.extensions\\2.2.0\\microsoft.aspnetcore.http.extensions.2.2.0.nupkg.sha512",
     "C:\\Users\\conno\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.2.0\\microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
+    "C:\\Users\\conno\\.nuget\\packages\\microsoft.aspnetcore.httpoverrides\\2.2.0\\microsoft.aspnetcore.httpoverrides.2.2.0.nupkg.sha512",
     "C:\\Users\\conno\\.nuget\\packages\\microsoft.aspnetcore.mvc.abstractions\\2.2.0\\microsoft.aspnetcore.mvc.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\conno\\.nuget\\packages\\microsoft.aspnetcore.mvc.core\\2.2.5\\microsoft.aspnetcore.mvc.core.2.2.5.nupkg.sha512",
     "C:\\Users\\conno\\.nuget\\packages\\microsoft.aspnetcore.responsecaching.abstractions\\2.2.0\\microsoft.aspnetcore.responsecaching.abstractions.2.2.0.nupkg.sha512",
